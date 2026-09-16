@@ -4,7 +4,9 @@
 
 ## 启动
 
-双击根目录的 **启动昔涟.vbs**，或运行 `dist/CyrenePet/CyrenePet.exe`。已打包版本无需安装 Python。移动给其他电脑时，请复制整个 `dist/CyrenePet` 文件夹。
+**单文件版：** 双击 `dist/CyrenePet.exe`。只需复制这一个 EXE 给其他 Windows 电脑，无需 Python、素材文件夹或其他配套文件。程序将所需运行库与四种粉蓝渐变状态素材打包在内部，启动时自动解压到系统临时目录，退出后清理；首次启动可能稍慢。
+
+根目录的 **启动昔涟.vbs** 优先启动单文件版。原文件夹版仍保留在 `dist/CyrenePet/CyrenePet.exe`，分享该版本时需复制整个 `dist/CyrenePet` 文件夹。两种版本共用设置，并使用同一个单实例服务。
 
 ## 互动
 
@@ -30,6 +32,7 @@ Python 3.13 / PySide6。使用 `py -3 -m venv .venv` 创建环境，然后执行
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 .\.venv\Scripts\python.exe pet.py --smoke-test
 powershell -ExecutionPolicy Bypass -File build.ps1
+powershell -ExecutionPolicy Bypass -File build.ps1 -SingleFile
 ```
 
 `pet.py` 为窗口与交互，`core.py` 为位置和设置逻辑，`assets/` 为透明素材。`tools/prepare_assets.py` 从原始图集切出四种状态并对齐脚底，保留透明通道。动画使用状态素材配合呼吸、摆动、跳动和移动，属于四状态动画，不是逐帧骨骼动画。
